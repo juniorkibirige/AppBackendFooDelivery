@@ -18,7 +18,7 @@ exports.isPasswordAndUserMatch = (req, res, next) => {
     UserModel.findByEmail(req.body.email)
     .then( user => {
         if(!user[0]){
-            res.status(404).send({success: false, errors: ['Incorrect credentials']})
+            res.status(404).send({success: false, errors: ['User doesn\'t exist!']})
         } else {
             let concat = Buffer.from(process.env.HASH_CONCAT, 'utf-8').toString('base64')
             let passwordFields = user[0].passwd.split(concat)

@@ -17,15 +17,15 @@ exports.routeConfig = (app) => {
         OrderController.addOrder
     ])
 
-    app.get(VERSION + '/qeats/order/:orderId', [
-        // ValidationMiddleware.validJWTNeeded,
-        // PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
-        OrderController.getById
-    ])
-
-    app.patch(VERSION + '/qeats/order/:orderId/cancel-order', [
+    app.patch(VERSION + '/qeats/:userId/order/:orderId/cancel-order', [
         ValidationMiddleware.validJWTNeeded,
         PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
         OrderController.cancelOrder
+    ])
+
+    app.get(VERSION + '/qeats/:userId/order/:orderId', [
+        ValidationMiddleware.validJWTNeeded,
+        PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
+        OrderController.getById
     ])
 }

@@ -5,8 +5,8 @@ const ValidationMiddleware = require('../common/middlewares/auth.validation.midd
 const VERSION = process.env.API_VERSION
 exports.routeConfig = (app) => {
     app.get(VERSION + '/qeats/restaurant/:id/menu', [
-        // ValidationMiddleware.validJWTNeeded,
-        // PermissionMiddleware.minimumPermissionLevelRequired(process.env.PERMISSION_ALL),
+        ValidationMiddleware.validJWTNeeded,
+        PermissionMiddleware.minimumPermissionLevelRequired(process.env.PERMISSION_ALL),
         MenuController.index,
         // MenuController.getItemData
     ])
