@@ -14,24 +14,55 @@ exports.insert = (req, res) => {
             req.body.otherPermissionLevel = process.env.PERMISSION_ALL
             UserModel.createUser(req.body)
                 .then((result) => {
-                    res.status(201).send({ res: result, success: true })
+                    res.status(201).send({res: result, success: true})
                 })
         } else {
-            res.status(409).send({ emsg: "User already exists" })
+            res.status(409).send({emsg: "User already exists"})
         }
     })
 }
 
 exports.getById = (req, res) => {
     UserModel.findById(req.params.userId).then((result) => {
-        if (result == null) res.status(405).send({ emsg: 'Specified user doesn\'t exist!' })
-        else res.status(200).send({ success: true, data: result })
+        if (result == null) res.status(405).send({emsg: 'Specified user doesn\'t exist!'})
+        else res.status(200).send({success: true, data: result})
+    })
+}
+
+exports.getDeliveryData = (req, res) => {
+    try {
+        UserModel.getDeliveryData(req.params.userId).then((result) => {
+            if (result.length === 0) res.status(404).send({success: false})
+            else res.status(200).send({success: true, data: result})
+        })
+    } catch (e) {
+        res.status(404).send({success: false})
+    }
+}
+
+exports.addDeliveryData = (req, res) => {
+    UserModel.getDeliveryData(req.params.userId).then(result => {
+        if (Object.keys(result).length === 0) {
+            UserModel.addDeliveryData(req.params.userId, req.body).then(result => {
+                res.status(200).send({success: true, msg: "Delivery Details Added", data: result})
+            }, err => {
+                res.status(200).send({success: false, msg: "Error occurred"})
+            })
+        } else {
+            UserModel.editDeliveryData(req.params.userId, req.body).then(result => {
+                res.status(200).send({success: true, msg: "Updated Delivery Details", data: result})
+            }, err => {
+                res.status(200).send({success: false, msg: err})
+            }).catch(rej => {
+                res.status(200).send({success: false, msg: rej})
+            })
+        }
     })
 }
 
 exports.getByEmail = (req, res) => {
     UserModel.findByEmail(req.params.email).then(result => {
-        if (result.length == 0) res.status(404).send({ success: false });
+        if (result.length == 0) res.status(404).send({success: false});
         else res.status(201);
     })
 }
@@ -53,9 +84,9 @@ exports.removeById = (req, res) => {
         .then(result => {
             res.status(204).send(result)
         }).catch(err => {
-            console.log(err)
-            res.status(404).send({ errors: 'Specified user does\'nt exist!' })
-        })
+        console.log(err)
+        res.status(404).send({errors: 'Specified user does\'nt exist!'})
+    })
 }
 
 exports.list = (req, res) => {

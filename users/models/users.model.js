@@ -1,5 +1,3 @@
-const { Mongoose, mongo } = require("mongoose");
-
 const mongoose = require('../../common/services/mongoose.service').mongoose
 const Schema = mongoose.Schema
 const userSchema = new Schema({
@@ -11,6 +9,20 @@ const userSchema = new Schema({
     permissionLevel: Number,
     otherPermissionLevel: Number
 });
+const userDeliveryData = new Schema({
+    userId: String,
+    longitude: Number,
+    latitude: Number,
+    distance: String
+});
+
+userDeliveryData.virtual('id').get(function (){
+    return this._id.toHexString();
+})
+
+userDeliveryData.set('toJSON', {
+    virtuals: true
+})
 
 userSchema.virtual('id').get(function(){
     return this._id.toHexString();
@@ -21,10 +33,60 @@ userSchema.set('toJSON', {
 })
 
 const userModel = mongoose.model('Users', userSchema)
+const userDeliveryModel = mongoose.model('delivery_details', userDeliveryData)
 
 exports.createUser = (userData) => {
     const user = new userModel(userData)
     return user.save()
+}
+
+exports.addDeliveryData = (id, deliveryData) => {
+    deliveryData.userId = id;
+    const delData = new userDeliveryModel(deliveryData)
+    return delData.save()
+}
+
+exports.getDeliveryData = (id) => {
+    try {
+        return userDeliveryModel.find({userId: id}).then(result => {
+            if(result == null) return {}
+            return userDeliveryModel.findById(result[0]._id).then(r=> {
+                r = r.toJSON()
+                delete r._id
+                delete r.__v
+                return r
+            })
+        })
+    } catch (e) {
+        console.log(e)
+        return {}
+    }
+}
+
+exports.editDeliveryData = (id, deliveryData) => {
+    return new Promise((res, rej) => {
+        userDeliveryModel.find({userId: id}).then(delivery => {
+            userDeliveryModel.findById(delivery[0]._id).then(delData => {
+                for (let i in deliveryData) {
+                    if(deliveryData.hasOwnProperty(i)) {
+                        delData[i] = deliveryData[i]
+                    }
+                }
+                delData.save((err, upDelivery) => {
+                    if(err) return rej(err)
+                    upDelivery = upDelivery.toJSON()
+                    delete upDelivery._id
+                    delete upDelivery.__v
+                    res(upDelivery)
+                })
+            })
+        }, err => {
+            if(err) rej(err)
+        }).catch(err=> {
+            console.log(err)
+            return err
+        })
+    })
 }
 
 exports.findById = (id) => {
@@ -47,7 +109,9 @@ exports.patchUser = (id, userData) => {
         userModel.findById(id, (err, user) => {
             if(err) rej(err)
             for (let i in userData) {
-                user[i] = userData[i]
+                if(userData.hasOwnProperty(i)) {
+                    user[i] = userData[i]
+                }
             }
             user.save((err, UpUser) => {
                 if(err) return rej(err)

@@ -41,4 +41,18 @@ exports.routesConfig = (app) => {
         PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
         UsersController.getByEmail
     ])
+
+    app.get(VERSION + '/user/:userId/delDetails', [
+        ValidationMiddleware.validJWTNeeded,
+        PermissionMiddleware.minimumPermissionLevelRequired(ALL),
+        PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
+        UsersController.getDeliveryData
+    ])
+
+    app.post(VERSION + '/user/:userId/delDetails', [
+        ValidationMiddleware.validJWTNeeded,
+        PermissionMiddleware.minimumPermissionLevelRequired(ALL),
+        PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
+        UsersController.addDeliveryData
+    ])
 }

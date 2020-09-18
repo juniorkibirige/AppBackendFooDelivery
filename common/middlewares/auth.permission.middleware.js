@@ -3,7 +3,6 @@ const ADMIN_PERMISSION = process.env.ADMIN_PERMISSION
 
 exports.minimumPermissionLevelRequired = (rpl) => {
     return (req, res, next) => {
-        console.log(req.jwt);
         let upl = parseInt(req.jwt.permissionLevel)
         let opl = parseInt(req.jwt.otherPermissionLevel)
         if (upl == rpl || opl == rpl) {
