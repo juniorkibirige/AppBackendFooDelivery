@@ -19,17 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5610cbd-d322-45d3-9ea8-2d4af2bd459b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/middlewares/auth.permission.middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/middlewares/auth.permission.middleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/controllers/users.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/users/controllers/users.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/models/users.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/users/models/users.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/routes.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/users/routes.config.js" afterDir="false" />
-    </list>
+    <list default="true" id="c5610cbd-d322-45d3-9ea8-2d4af2bd459b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,6 +87,7 @@
       <workItem from="1598202634095" duration="220000" />
       <workItem from="1600287496433" duration="11962000" />
       <workItem from="1600404378034" duration="4807000" />
+      <workItem from="1600488424290" duration="38000" />
     </task>
     <servers />
   </component>
