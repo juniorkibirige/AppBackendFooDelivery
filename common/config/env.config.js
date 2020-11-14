@@ -7,5 +7,7 @@ module.exports = {
         "Admin": 2048,
         "User": 1024,
         "Rider": 512
-    }
+    },
+    'apiKey': "b3f99fb861ffa70d4a2c160abb951f7be885d62b9a573441c348ddceee192c55",
+    'username': "marsCafeDelivery"
 }

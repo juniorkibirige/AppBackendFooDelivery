@@ -16,7 +16,13 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5610cbd-d322-45d3-9ea8-2d4af2bd459b" name="Default Changelist" comment="" />
@@ -88,7 +94,16 @@
       <workItem from="1600287496433" duration="11962000" />
       <workItem from="1600404378034" duration="4807000" />
       <workItem from="1600488424290" duration="38000" />
+      <workItem from="1600825604125" duration="226000" />
     </task>
+    <task id="LOCAL-00001" summary="workspace">
+      <created>1600825713808</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600825713808</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,12 +114,28 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="workspace" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace" />
   </component>
   <component name="WindowStateProjectService">
     <state x="177" y="55" width="1084" height="710" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600327974149">
@@ -135,6 +166,10 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state width="263" height="500" key="HiddenNamespacesPopup/72.27.1294.741@72.27.1294.741" timestamp="1600318606186" />
+    <state x="314" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1600825727790">
+      <screen x="72" y="27" width="1294" height="741" />
+    </state>
+    <state x="314" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1294.741@72.27.1294.741" timestamp="1600825727790" />
     <state x="382" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1597853304546">
       <screen x="72" y="27" width="1294" height="741" />
     </state>

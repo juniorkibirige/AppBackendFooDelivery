@@ -11,7 +11,8 @@ const restaurantSchema = new Schema({
     attributes: Array,
     opensAt: String,
     closesAt: String,
-    acceptingOrders: Boolean
+    acceptingOrders: Boolean,
+    category: Number
 });
 
 restaurantSchema.virtual('id').get(function () {

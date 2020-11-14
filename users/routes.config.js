@@ -1,9 +1,7 @@
 const UsersController = require('./controllers/users.controller')
 const PermissionMiddleware = require('../common/middlewares/auth.permission.middleware')
 const ValidationMiddleware = require('../common/middlewares/auth.validation.middleware')
-
-console.log(process.env.API_VERSION)
-
+ 
 const ADMIN = process.env.PERMISSION_ADMIN
 const RIDER = process.env.PERMISSION_RIDER
 const USER = process.env.PERMISSION_USER
@@ -37,9 +35,14 @@ exports.routesConfig = (app) => {
 
     app.post(VERSION + '/user/:email', [
         ValidationMiddleware.validJWTNeeded,
-        PermissionMiddleware.minimumPermissionLevelRequired(ALL),
         PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
         UsersController.getByEmail
+    ])
+
+    app.post(VERSION + '/user/:userId/tel', [
+        ValidationMiddleware.validJWTNeeded,
+        PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
+        UsersController.addTelNumber
     ])
 
     app.get(VERSION + '/user/:userId/delDetails', [

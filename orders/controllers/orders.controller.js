@@ -1,14 +1,16 @@
 const OrderModel = require('../models/order.model')
 
 exports.addOrder = (req, res) => {
+    console.log(req.body)
     let userId = req.body['userId'],
         restaurantId = req.body['restaurantId'],
-        items = req.body['items']
-    let total = 0
-    for (let i= 0; i < items.length; i++) {
-        total += items[i]['price'] * items[i]['total_items']
-    }
-    OrderModel.store(userId, restaurantId, items, total).then((result) => {
+        items = req.body['items'],
+        paid = req.body['paid'] == true
+    let total = req.body['grandCost']
+    // for (let i= 0; i < items.length; i++) {
+    //     total += items[i]['price'] * items[i]['total_items']
+    // }
+    OrderModel.store(userId, restaurantId, items, total, paid).then((result) => {
         if(result == null) res.status(500).send({emsg: 'Re-check your data and Try Again!'})
         else res.status(200).send({success: true, data: result})
     })

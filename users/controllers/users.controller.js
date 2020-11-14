@@ -60,9 +60,19 @@ exports.addDeliveryData = (req, res) => {
     })
 }
 
+exports.addTelNumber = (req, res) => {
+    UserModel.addMobileNumber(req.params.userId, req.body.mobile).then(result => {
+        res.status(202).send({success: true, msg: 'Mobile Number Added', data: result})
+    }, err=>{
+        res.status(404).send({success: false, msg: err})
+    }).catch(rej => {
+        res.status(404).send({success: false, msg: rej})
+    })
+}
+
 exports.getByEmail = (req, res) => {
     UserModel.findByEmail(req.params.email).then(result => {
-        if (result.length == 0) res.status(404).send({success: false});
+        if (result.length == 0) res.status(200).send({success: false});
         else res.status(201);
     })
 }

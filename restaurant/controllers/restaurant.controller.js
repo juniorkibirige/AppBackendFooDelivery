@@ -4,6 +4,8 @@ exports.menuList = (req, res) => {
     
 }
 
+var cat = ['Breakfast', 'Lunch', 'Supper','Snacks']
+
 exports.restaurantList = (req, res) => {
     RestaurantModel.list(100, 0).then(result => {
         res.status(200).send({

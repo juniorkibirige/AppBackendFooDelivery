@@ -22,7 +22,7 @@ OrderSchema.set('toJSON', {
 
 const orderModel = mongoose.model('orders', OrderSchema)
 
-exports.store = (userId, restaurantId, items, total) => {
+exports.store = (userId, restaurantId, items, total, paid) => {
     let date = new Date(Date.now())
     let d = date.toUTCString().split(' ');
     let l = date.toLocaleTimeString();
@@ -33,7 +33,7 @@ exports.store = (userId, restaurantId, items, total) => {
         items: items,
         total: total,
         total_items: items.length,
-        status: "OFD",
+        status: paid ? "ACCEPTED" : "OFD",
         ordered_on: dString.join(' ').concat(' ').concat(l)
     }
 

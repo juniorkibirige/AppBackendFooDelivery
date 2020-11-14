@@ -15,22 +15,23 @@ exports.minimumPermissionLevelRequired = (rpl) => {
 
 exports.onlySameUserCanDoThisAction = (req, res, next) => {
     let upl = req.jwt.userId
-    if(req.body && req.body.uuid == upl) {
+    if (req.body && req.body.uuid == upl) {
         return next()
     } else {
         return res.status(403).send("Access denied")
     }
 }
 
-exports.onlySameUserOrAdminCanDoThisAction = (req, res, next) =>{
+exports.onlySameUserOrAdminCanDoThisAction = (req, res, next) => {
     let upl = parseInt(req.jwt.permissionLevel)
     let uId = req.jwt.userId
-    if(req.params && req.params.userId == uId) {
+    if (req.params && req.params.userId == uId) {
         return next()
     } else {
-        if(upl === ADMIN_PERMISSION) {
+        if (upl === ADMIN_PERMISSION) {
             return next()
         } else {
+            if (req.jwt.app) return next()
             return res.status(403).send()
         }
     }
@@ -38,7 +39,7 @@ exports.onlySameUserOrAdminCanDoThisAction = (req, res, next) =>{
 
 exports.sameUserCantDoThisAction = (req, res, next) => {
     let uId = req.jwt.userId
-    if(req.params.userId !== uId) {
+    if (req.params.userId !== uId) {
         return next()
     } else {
         return res.status(400).send()
