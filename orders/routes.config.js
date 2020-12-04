@@ -5,6 +5,14 @@ const ValidationMiddleware = require('../common/middlewares/auth.validation.midd
 const VERSION = process.env.API_VERSION
 
 exports.routeConfig = (app) => {
+    app.patch(VERSION + '/orders/:orderId/p_time/:pTime/admin', [
+        OrderController.addPrepTime4Order
+    ])
+
+    app.patch(VERSION + '/orders/:orderId/accept/admin', [
+        OrderController.acceptOrder
+    ])
+
     app.get(VERSION + '/qeats/orders/:userId', [
         ValidationMiddleware.validJWTNeeded,
         PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,

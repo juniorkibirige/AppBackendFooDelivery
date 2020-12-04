@@ -17,6 +17,7 @@ const ItemSchema = new Schema({
     itemId: String,
     name: String,
     imageUrl: String,
+    prepration_time: String,
     price: Object,
     attributes: Array
 });

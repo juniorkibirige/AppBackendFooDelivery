@@ -6,7 +6,8 @@ const options = {
     poolSize: 10,
     bufferMaxEntries: 0,
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false,
 }
 
 const connectWithRetry = _ => {

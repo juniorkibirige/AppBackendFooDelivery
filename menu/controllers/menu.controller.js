@@ -11,6 +11,6 @@ exports.index = (req, res) => {
 }
 
 exports.getItemData = (req, res) => {
-    console.log(req.data)
+    // console.log(req.data)
     return res.status(200).send({data: req.data})
 }
